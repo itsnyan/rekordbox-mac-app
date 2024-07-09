@@ -1,0 +1,16 @@
+{
+  "name": "rekordbox-parser",
+  "version": "1.0.0",
+  "description": "An Electron app to parse Rekordbox XML files and organize songs by playlists.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^25.3.0",
+    "xml-js": "^1.6.11",
+    "fs-extra": "^11.1.0",
+    "inquirer": "^9.2.3",
+    "chalk": "^5.2.0"
+  }
+}

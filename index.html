@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rekordbox Parser V1</title>
+  <link rel="stylesheet" type="text/css"  href="styles.css">
+</head>
+<body>
+  <h1>Rekordbox Organizer V1</h1>
+  <button id="select-xml-file">Select XML File</button>
+  <button id="select-output-directory">Select Output Directory</button>
+  <button id="start-processing">Start Processing</button>
+  <div id="output"></div>
+  <div id="progress"></div>
+  <div id="result"></div>
+  <div id="actions" hidden>
+    <button id="openOutputFolderButton" disabled>Open Output Folder</button>
+    <button id="resetOutputFolderButton" disabled>Backup to Another Folder</button>
+    <button id="closeAppButton">Close Application</button>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>

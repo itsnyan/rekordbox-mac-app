@@ -1,0 +1,29 @@
+body { 
+  font-family: Arial, sans-serif; 
+}
+   
+#output { 
+  margin-top: 20px; 
+}
+
+.error { 
+  color: red; 
+}
+
+.warning {
+  color: orange;
+}
+
+.success {
+  color: green;
+}
+
+p {
+  margin: 0 0 5px 0;
+}
+
+#progress {
+  margin: 20px 0 20px;
+  overflow-y: auto;
+  max-height: 200px;
+}
