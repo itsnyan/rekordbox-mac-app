@@ -1,4 +1,5 @@
-const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
+
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 const fs = require('fs-extra');
 const { xml2json } = require('xml-js');
@@ -17,7 +18,7 @@ function createWindow() {
   });
 
   mainWindow.loadFile('index.html');
-  mainWindow.webContents.openDevTools(); // Uncomment for debugging
+  // mainWindow.webContents.openDevTools(); //uncomment for debugging
 
   mainWindow.on('closed', () => {
     mainWindow = null;
@@ -44,8 +45,7 @@ ipcMain.handle('select-xml-file', async () => {
     filters: [{ name: 'XML Files', extensions: ['xml'] }]
   });
 
-  // Replace with actual return logic based on file selection
-  return '/Users/nyanhtet/Desktop/rekordbox.xml';
+  return result.filePaths.length > 0 ? result.filePaths[0] : null;
 });
 
 ipcMain.handle('select-output-directory', async () => {
@@ -53,7 +53,7 @@ ipcMain.handle('select-output-directory', async () => {
     properties: ['openDirectory', 'createDirectory']
   });
 
-  return '/Users/nyanhtet/Desktop/test';
+  return result.filePaths.length > 0 ? result.filePaths[0] : null;
 });
 
 ipcMain.handle('process-xml-file', async (event, xmlFilePath, outputDir) => {
@@ -62,30 +62,11 @@ ipcMain.handle('process-xml-file', async (event, xmlFilePath, outputDir) => {
     process.chdir(outputDir);
     await backupHandler(playlists);
 
-    mainWindow.webContents.send('processing-complete');
-
     return { success: true };
   } catch (error) {
     console.error('Error during processing:', error);
     return { success: false, message: error.message };
   }
-});
-
-ipcMain.handle('open-output-folder', async () => {
-  // Replace with actual logic to open the selected output folder
-  const folderPath = '/path/to/output/folder'; // Replace with actual folder path
-  await shell.openPath(folderPath);
-});
-
-ipcMain.handle('close-app', () => {
-  app.quit();
-});
-
-ipcMain.handle('reset-output-folder', async () => {
-  // Reset output folder logic
-  // Example: Clear logs, reset output directory, etc.
-
-  mainWindow.webContents.send('folder-selected', false);
 });
 
 async function parseXML(filePath) {
@@ -101,10 +82,10 @@ async function parseXML(filePath) {
 
   const mappedPlaylist = mapPlaylistToTracks(trackMap, playlists);
 
-  logMessage({ tracks });
-  logMessage({ playlists });
-  logMessage({ mappedPlaylist });
-  logMessage({ trackMap });
+  logMessage({tracks});
+  logMessage({playlists})
+  logMessage({mappedPlaylist});
+  logMessage({trackMap});
 
   return { playlists: mappedPlaylist, tracks };
 }
@@ -165,26 +146,31 @@ async function backupHandler(playlists) {
 
 function writeToFile(filename, data) {
   fs.writeFile(filename, data, 'utf8', (err) => {
-    if (err) {
-      console.log(err);
-      return;
-    } else {
-      console.log("Data written to", filename);
-      return;
-    }
+      if (err) {
+          console.log(err);
+          return;
+      }
+      else {
+         console.log("Data written to", filename);
+          return;
+      }
   });
 }
 
+// Function to send asynchronous messages to renderer process
 function sendAsyncMessage(data, type) {
   if (mainWindow) {
     mainWindow.webContents.send('asynchronous-message', { data, type });
   }
 }
 
+// Example usage: send a log message
 function logMessage(data, type = 'log') {
   sendAsyncMessage(data, type);
 }
 
+// Example usage: send an error messag
 function logError(error) {
   sendAsyncMessage(error, 'error');
 }
+
