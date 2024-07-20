@@ -14,11 +14,6 @@ The rekordbox-mac-app is a macOS application that facilitates the organization o
 - **XML Update: Remove Duplicate Songs**: Implementation to eliminate duplicate entries from the XML data.
 - **XML Update: Remove Non-Existent Songs**: Capability to clean XML records of songs that no longer exist.
 
-## Technologies Utilized
-
-- **Electron**: Framework enabling the development of cross-platform desktop applications using web technologies.
-- **HTML/CSS/JavaScript**: Frontend technologies employed for crafting the application's user interface and interactive components.
-
 ## Getting Started
 
 ⚒️ **Work in Progress**: The project is currently under active development. The compiled version will be made available as soon as possible.
