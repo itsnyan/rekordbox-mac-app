@@ -17,7 +17,6 @@ The rekordbox-mac-app is a macOS application that facilitates the organization o
 ## Technologies Utilized
 
 - **Electron**: Framework enabling the development of cross-platform desktop applications using web technologies.
-- **Node.js**: JavaScript runtime environment facilitating server-side application execution.
 - **HTML/CSS/JavaScript**: Frontend technologies employed for crafting the application's user interface and interactive components.
 
 ## Getting Started
