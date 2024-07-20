@@ -2,9 +2,7 @@
 
 Rekordbox Mac Organizer App (Built with Electron and Node.js)
 
-The rekordbox-mac-app is a macOS app that makes organizing and backing up your music files easily using your Rekordbox Collection XML file. 
-
-The app is built using web technologies, It's the follow-up from the rekordbox-cli project, designed to make managing your music even simpler using a graphical interface.
+The rekordbox-mac-app is a macOS app that makes organizing and backing up your music files a breeze using your Rekordbox Collection XML file. Built with web technologies, it's the next step from the rekordbox-cli project, now with a graphical interface to make managing your music even simpler.
 
 ## Key Features
 
