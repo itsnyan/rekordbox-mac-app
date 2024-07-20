@@ -13,8 +13,8 @@ ipcRenderer.on('asynchronous-message', (event, message) => {
   const progressDiv = document.getElementById('progress');
   const logElement = document.createElement('p');
 
-  if (message.type === 'success') {
-    progressDiv.innerHTML += `<p class="success">Selected Output Directory: ${message.data}</p>`;
+  if (message.type === 'progress') {
+    progressDiv.innerHTML += `<p class="success">${message.data}</p>`;
   } else if (message.type === 'error') {
     logElement.className = 'error';
     logElement.textContent = message.data;

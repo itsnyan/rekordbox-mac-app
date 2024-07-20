@@ -9,7 +9,7 @@ let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
-    height: 600,
+    height: 800,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false,
@@ -18,7 +18,7 @@ function createWindow() {
   });
 
   mainWindow.loadFile('index.html');
-  // mainWindow.webContents.openDevTools(); //uncomment for debugging
+  mainWindow.webContents.openDevTools();
 
   mainWindow.on('closed', () => {
     mainWindow = null;
@@ -28,9 +28,7 @@ function createWindow() {
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
     app.quit();
-  }
 });
 
 app.on('activate', () => {
@@ -64,9 +62,13 @@ ipcMain.handle('process-xml-file', async (event, xmlFilePath, outputDir) => {
 
     return { success: true };
   } catch (error) {
-    console.error('Error during processing:', error);
+    logError(error.message);
     return { success: false, message: error.message };
   }
+});
+
+ipcMain.handle('close-app', () => {
+    app.quit();
 });
 
 async function parseXML(filePath) {
@@ -119,9 +121,9 @@ async function backupHandler(playlists) {
 
       if (!fs.existsSync(folderPath)) {
         await fs.mkdir(folderPath);
-        logMessage(`Created folder for playlist '${playlistName}'`, 'success');
+        logMessage(`Created folder for playlist '${playlistName}'`, 'progress');
       } else {
-        logError(`Folder for playlist '${playlistName}' already exists`, 'error');
+        logError(`Folder for playlist '${playlistName}' already exists`, 'progess-error');
       }
 
       for (const track of playlist.tracks) {
@@ -132,14 +134,14 @@ async function backupHandler(playlists) {
 
         try {
           await fs.copyFile(decodedFilePath, destinationPath);
-          logMessage(`Copied file '${fileName}' to folder '${playlistName}'`, 'success');
+          logMessage(`Copied file '${fileName}' to folder '${playlistName}'`, 'progress');
         } catch (error) {
-          logError(`Error copying file '${fileName}' to folder '${playlistName}':`, 'error');
+          logError(`Error copying file '${fileName}' to folder '${playlistName}':`, 'progress-error');
         }
       }
     }
   } catch (error) {
-    console.error('Error occurred while creating backup folders:', error);
+    console.error('Error occurred while creating backup folders:' + error.message, 'progress-error');
     throw error;
   }
 }
@@ -157,20 +159,16 @@ function writeToFile(filename, data) {
   });
 }
 
-// Function to send asynchronous messages to renderer process
+function logMessage(data, type = 'log') {
+  sendAsyncMessage(data, type);
+}
+
+function logError(error) {
+  sendAsyncMessage(error, 'error');
+}
+
 function sendAsyncMessage(data, type) {
   if (mainWindow) {
     mainWindow.webContents.send('asynchronous-message', { data, type });
   }
 }
-
-// Example usage: send a log message
-function logMessage(data, type = 'log') {
-  sendAsyncMessage(data, type);
-}
-
-// Example usage: send an error messag
-function logError(error) {
-  sendAsyncMessage(error, 'error');
-}
-

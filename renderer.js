@@ -3,49 +3,55 @@ const progressDiv = document.getElementById('progress');
 const resultDiv = document.getElementById('result');
 const actionsDiv = document.getElementById('actions');
 
-const selectXmlFileButton = document.getElementById('select-xml-file');
-const selectOutputDirectoryButton = document.getElementById('select-output-directory');
-const startProcessingButton = document.getElementById('start-processing');
+const selectXmlFileBtn = document.getElementById('select-xml-btn');
+const selectOutputBtn = document.getElementById('select-output-btn');
+const startBtn = document.getElementById('start-btn');
 
-const openOutputFolderButton = document.getElementById('openOutputFolderButton');
-const closeAppButton = document.getElementById('closeAppButton');
-const resetOutputFolderButton = document.getElementById('resetOutputFolderButton');
+// Selecting buttons
+const openFolderBtn = document.getElementById('open-folder-btn');
+const closeBtn = document.getElementById('close-btn');
+const resetBtn = document.getElementById('reset-btn');
 
 let xmlFilePath = '';
 let outputDir = '';
 
-// Event listeners for selecting XML file and output directory
-selectXmlFileButton.addEventListener('click', async () => {
+selectXmlFileBtn.addEventListener('click', async () => {
   const result = await window.electronAPI.selectXmlFile();
+  
   if (result) {
     xmlFilePath = result;
+    selectXmlFileBtn.style.display = 'none';
+    selectOutputBtn.style.display = 'block';
+
     outputDiv.innerHTML = `<p>Selected XML File: ${xmlFilePath}</p>`;
   } else {
-    outputDiv.innerHTML = `<p>No file selected.</p>`;
+    outputDiv.innerHTML = `<p>No file selected, please select your Rekordbox collection XML!</p>`;
   }
 });
 
-selectOutputDirectoryButton.addEventListener('click', async () => {
+selectOutputBtn.addEventListener('click', async () => {
   const result = await window.electronAPI.selectOutputDirectory();
   if (result) {
     outputDir = result;
+    selectOutputBtn.style.display = 'none';
+    startBtn.style.display = 'block';
+
     outputDiv.innerHTML += `<p>Selected Output Directory: ${outputDir}</p>`;
   } else {
     outputDiv.innerHTML += `<p>No directory selected.</p>`;
   }
 });
 
-// Event listener for starting the processing
-startProcessingButton.addEventListener('click', async () => {
+startBtn.addEventListener('click', async () => {
   if (xmlFilePath && outputDir) {
+    progressDiv.style.display = 'block';
     const result = await window.electronAPI.processXmlFile(xmlFilePath, outputDir);
     if (result.success) {
       const successElement = document.createElement('p');
-      successElement.textContent = 'Processing complete!';
+      successElement.textContent = 'Backup completed successfully!';
       successElement.classList.add('success');
       resultDiv.appendChild(successElement);
-      actionsDiv.style.display = 'block';
-      startProcessingButton.disabled = true;
+      resetBtn.style.display = 'block';
     } else {
       const warningElement = document.createElement('p');
       warningElement.textContent = result.message;
@@ -59,45 +65,13 @@ startProcessingButton.addEventListener('click', async () => {
   }
 });
 
-// Event listener for opening the output folder
-openOutputFolderButton.addEventListener('click', () => {
-  window.electronAPI.openOutputFolder();
-});
 
-// Event listener for closing the application
-closeAppButton.addEventListener('click', () => {
-  window.electronAPI.closeApp();
-});
+// todo utils
 
-// Event listener for resetting output folder (backup to another folder)
-resetOutputFolderButton.addEventListener('click', () => {
-  window.electronAPI.resetOutputFolder();
-});
+// function hideElement(element) {
+//   element.style.display = 'none';
+// }
 
-// IPC event listener for enabling/disabling buttons based on folder selection
-window.addEventListener('DOMContentLoaded', () => {
-  window.electronAPI.onFolderSelected((folderSelected) => {
-    openOutputFolderButton.disabled = !folderSelected;
-    resetOutputFolderButton.disabled = !folderSelected;
-  });
-});
-
-// IPC event listener for displaying progress messages
-window.addEventListener('DOMContentLoaded', () => {
-  window.electronAPI.onProgressMessage((message) => {
-    const logElement = document.createElement('p');
-    
-    if (message.type === 'success') {
-      logElement.classList.add('success');
-    } else if (message.type === 'error') {
-      logElement.classList.add('error');
-    } else {
-      console.warn('Received message with unknown type:', message);
-      return;
-    }
-    
-    logElement.textContent = message.data;
-    progressDiv.appendChild(logElement);
-    progressDiv.scrollTop = progressDiv.scrollHeight;
-  });
-});
+// function showElement(element) {
+//   element.style.display = 'block';
+// }
