@@ -3,6 +3,9 @@
 <head>
   <title>Rekordbox Organizer</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
@@ -11,7 +14,7 @@
         <div id="feature-list">
           <label class="radio-label current-feature" >
             <input type="radio" name="features" value="backup" checked>
-            Backup your songs into folders based on your Rekordbox playlists 📁
+            Backup your songs into folders using your Rekordbox playlists
         </label>
         
         <label class="radio-label">
@@ -26,8 +29,13 @@
       </div>
     </section>
     <section id="input-section">
-      <div id="output">
-        <p>Select your XML file below ⬇️</p>
+      <div id="selection-info">
+        <div id="selections">
+          <div id="selected-xml">
+            <p>Select your Rekordbox collection XML</p>
+          </div>
+          <div id="selected-output">
+          </div>
       </div>
     </section> 
       <div id="progress" hidden></div>
@@ -36,7 +44,7 @@
     <section id="actions-section">
       <div id="start-actions">
         <button id="select-xml-btn" class="active">Choose XML File</button>
-        <button id="select-output-btn" class="active" hidden>Choose Output Directory</button>
+        <button id="select-output-btn" class="active" hidden>Choose Directory</button>
         <button id="start-btn" class="active" hidden>Start Backup</button>
         <button id="close-btn" class="active" hidden>Close Application</button>
       </div>
@@ -46,6 +54,12 @@
       </div> -->
     </section>
   </div>
+  <footer>
+    <p>&copy; 2024 Rekordbox Organizer - 
+      <a href="https://github.com/itsnyan" target="_blank" >@itsnyan</a> - 
+      <a href="https://www.linkedin.com/in/nyanhtet/" target="_blank" >Contact</a> - 
+      <a href="https://www.buymeacoffee.com/nyancodes" target="_blank" >Support</a></p>
+  </footer>  
   <script src="renderer.js"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
-const outputDiv = document.getElementById('output');
+const selectionInfoDiv = document.getElementById('selection-info');
+const selectionsDiv = document.getElementById('selections');
 const progressDiv = document.getElementById('progress');
 const resultDiv = document.getElementById('result');
 const actionsDiv = document.getElementById('actions');
@@ -6,14 +7,14 @@ const actionsDiv = document.getElementById('actions');
 const selectXmlFileBtn = document.getElementById('select-xml-btn');
 const selectOutputBtn = document.getElementById('select-output-btn');
 const startBtn = document.getElementById('start-btn');
-
-// Selecting buttons
-const openFolderBtn = document.getElementById('open-folder-btn');
 const closeBtn = document.getElementById('close-btn');
 const resetBtn = document.getElementById('reset-btn');
 
-let xmlFilePath = '';
-let outputDir = '';
+const selectedXmlElement = document.querySelector('#selected-xml');
+const selectedOutputElement = document.querySelector('#selected-output');
+
+let xmlFilePath = null;
+let outputDir = null;
 
 selectXmlFileBtn.addEventListener('click', async () => {
   const result = await window.electronAPI.selectXmlFile();
@@ -21,24 +22,62 @@ selectXmlFileBtn.addEventListener('click', async () => {
   if (result) {
     xmlFilePath = result;
     selectXmlFileBtn.style.display = 'none';
-    selectOutputBtn.style.display = 'block';
 
-    outputDiv.innerHTML = `<p>Selected XML File: ${xmlFilePath}</p>`;
+    if (outputDir) {
+      startBtn.style.display = 'block';
+    } else {
+      selectOutputBtn.style.display = 'block'; 
+    }
+
+    selectedXmlElement.innerHTML = `<p>Collection XML → ${xmlFilePath}</p>`;
+
+    const removeXmlBtn = document.createElement('p');
+    removeXmlBtn.classList.add('remove-btn');
+    selectedXmlElement.appendChild(removeXmlBtn);
+
+    removeXmlBtn.addEventListener('click', () => {
+      xmlFilePath = null;
+      selectedXmlElement.innerHTML = '<p>Select your Rekordbox collection XML</p>';
+      selectXmlFileBtn.style.display = 'block';
+      startBtn.style.display = 'none';
+
+      if (!outputDir) {
+        resetUI();
+      } 
+    });    
   } else {
-    outputDiv.innerHTML = `<p>No file selected, please select your Rekordbox collection XML!</p>`;
+    selectedXmlElement.innerHTML = `<p>No file selected, please select your Rekordbox collection XML!</p>`;
   }
 });
 
 selectOutputBtn.addEventListener('click', async () => {
   const result = await window.electronAPI.selectOutputDirectory();
+  
   if (result) {
     outputDir = result;
+
     selectOutputBtn.style.display = 'none';
     startBtn.style.display = 'block';
+    selectedOutputElement.innerHTML = `<p>Folder → ${outputDir}</p>`;
 
-    outputDiv.innerHTML += `<p>Selected Output Directory: ${outputDir}</p>`;
+    const removeOutputBtn = document.createElement('p');
+    removeOutputBtn.classList.add('remove-btn'); 
+    selectedOutputElement.appendChild(removeOutputBtn);
+
+    removeOutputBtn.addEventListener('click', () => {
+      outputDir = null;
+
+      if (!xmlFilePath) {
+        resetUI();
+      } else {
+        selectedOutputElement.innerHTML = '<p>Choose where to save your backup 📂</p>';
+        selectOutputBtn.style.display = 'block';
+        startBtn.style.display = 'none';
+      }
+    });
+
   } else {
-    outputDiv.innerHTML += `<p>No directory selected.</p>`;
+    selectedOutputElement.innerHTML = `<p>No directory selected, please select a folder to backup your playlist collection and tracks!</p>`;
   }
 });
 
@@ -51,7 +90,9 @@ startBtn.addEventListener('click', async () => {
       successElement.textContent = 'Backup completed successfully!';
       successElement.classList.add('success');
       resultDiv.appendChild(successElement);
-      resetBtn.style.display = 'block';
+      startBtn.style.display = 'none';
+      resultDiv.style.display = 'block';
+      closeBtn.style.display = 'block';
     } else {
       const warningElement = document.createElement('p');
       warningElement.textContent = result.message;
@@ -61,17 +102,20 @@ startBtn.addEventListener('click', async () => {
   } else {
     const errorElement = document.createElement('p');
     errorElement.textContent = 'Please select both XML file and output directory.';
-    outputDiv.appendChild(errorElement);
+    selectionsDiv.appendChild(errorElement);
   }
 });
 
+closeBtn.addEventListener('click', async () => {
+  await window.electronAPI.closeApp();
+});
 
-// todo utils
+function resetUI() {
+  selectedOutputElement.innerHTML = '';
+  selectOutputBtn.style.display = 'none';
 
-// function hideElement(element) {
-//   element.style.display = 'none';
-// }
+  selectXmlFileBtn.style.display = 'block';
+  selectedXmlElement.innerHTML = '<p>Select your Rekordbox collection XML</p>';
+}
 
-// function showElement(element) {
-//   element.style.display = 'block';
-// }
+resetUI();

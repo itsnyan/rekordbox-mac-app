@@ -1,6 +1,8 @@
 body { 
-  font-family: ui-monospace; 
-  /* background: #01232E; */
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
   background: #031116;
   color: #e6e6e6;
   width: 800px;
@@ -21,10 +23,6 @@ h1 {
 }
 
 #input-section {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   border: 2px solid #3d4443;
   color: white;
   padding: 20px;
@@ -32,8 +30,25 @@ h1 {
   margin: 20px;
 }
 
+#selections div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#selection-info {
+  width: 100%;
+}
+
+.remove-btn {
+  font-size: 20px;
+  cursor: pointer;
+  color: white
+}
+
 .error { 
-  color: #d0335f; 
+  color: #ef4e7c; 
 }
 
 .container {
@@ -46,7 +61,7 @@ h1 {
 }
 
 .success {
-  color: #68b86a;
+  color: #c2f2c4;
 }
 
 .btn-highlight {
@@ -62,25 +77,15 @@ p {
   margin: 20px 0 20px;
   overflow-y: auto;
   max-height: 200px;
+  font-size: 10px;
 }
 
 #result {
   margin: 20px;
-}
-
-/* button {
-  width: 200px;
-  height: 50px;
+  padding: 20px;
   border: 2px solid #3d4443;
-  background-color: rgba(29, 46, 41, .5);
-  color: white;
+  border-radius: 5px;
 }
-
-.active:hover {
-  border: 2px solid #545c48;
-  background-color: #485c58;
-  color: white;
-} */
 
 #progress {
   border: 1px #485c58 solid;
@@ -126,8 +131,8 @@ p {
   margin: 10px;
   text-align: center;
   text-decoration: none;
-  font-family: Helvetica, sans-serif;
-  font-weight: bold;
+  font-family: "Orbitron", sans-serif; 
+  font-weight: 600;
   font-size: 16px;
   line-height: 50px;
   cursor: pointer;
@@ -167,4 +172,35 @@ p {
 .radio-label input[type=radio]:checked {
   background-color: #627c77;
 }
+.remove-btn {
+  width: 20px;
+  height: 20px;
+  background-image: url('./assets/close-button.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: filter 0.3s;
+}
 
+.remove-btn:hover {
+  filter: brightness(0.8) hue-rotate(360deg);
+}
+
+
+footer {
+  font-size: 12px;
+  margin-left: 20px;
+  font-weight: 300;
+}
+
+footer a {
+  color: #627c77;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+footer a:hover {
+  color: #dce7e5;
+  opacity: 0.8;
+}
