@@ -1,19 +1,26 @@
-# rekordbox-mac-app
+# Rekordbox Collection XML Tool
 
-Rekordbox Mac Organizer App (Built with Electron and Node.js)
+Rekordbox Collection XML Tool for MacOS (built using web technologies).
 
-The rekordbox-mac-app is a macOS app that makes organizing and backing up your music files a breeze using your Rekordbox Collection XML file. Built with web technologies, it's the next step from the rekordbox-cli project, now with a graphical interface to make managing your music even simpler.
+Follow up from the rekordbox-cli project, now with a graphical interface to make managing your music even better. 
 
-## Key Features
+<img width="600" alt="rb-demo-screenshot" src="https://github.com/user-attachments/assets/0dc0f2ec-6bc1-45d0-aa22-ae64fe73dedb">
 
-- **XML Parsing**: Efficient extraction of playlists and tracks from Rekordbox XML files.
-- **Folder Organization**: Backup your music files into designated folders corresponding to playlists.
+## Features
 
-## Upcoming Features
+- #### Backup your songs into folders using your Rekordbox playlists.
 
-- **XML Update:** Remove Duplicate Songs: Get rid of duplicate entries in your XML data.
-- **XML Update:** Remove Non-Existent Songs: Clean up your XML by removing tracks that aren't on your system anymore.
+> When you import your songs into Rekordbox and organize them into playlists, especially when dealing with multiple genres, the original song files remain unorganized on your system. This application addresses that by taking your Rekordbox collection XML, parsing it, and creating a folder for each playlist. It then copies the corresponding songs from each playlist into these folders, effectively organizing your music files.
 
-## Notes
+- #### Duplicate removal feature (coming soon) 🛠️
+- #### Deleted track cleanup (coming soon) 🛠️
 
-⚒️ **Work in Progress**: The project is currently under active development. The compiled version will be made available as soon as possible.
+## Usage
+
+To download and install the app, current MVP version of the packaged app installer (DMG) is located in the 'Releases' folder:
+
+https://github.com/itsnyan/rekordbox-mac-app/tree/main/releases
+
+To get the collection XML in Rekordbox:
+
+<img width="405" alt="xml-how-to" src="https://github.com/user-attachments/assets/22a8931d-f648-4e6e-90c7-20122a9c12b0">
