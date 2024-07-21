@@ -18,7 +18,7 @@ function createWindow() {
   });
 
   mainWindow.loadFile('index.html');
-  // mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools(); // **todo Uncomment to open DevTools
 
   mainWindow.on('closed', () => {
     mainWindow = null;

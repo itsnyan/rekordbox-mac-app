@@ -1,3 +1,5 @@
 node_modules
 playlists.js
 tracks.js
+out/
+.ds_store

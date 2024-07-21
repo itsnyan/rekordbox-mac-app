@@ -93,6 +93,11 @@ startBtn.addEventListener('click', async () => {
       startBtn.style.display = 'none';
       resultDiv.style.display = 'block';
       closeBtn.style.display = 'block';
+
+      document.querySelectorAll('.remove-btn').forEach((btn) => {
+        btn.style.display = 'none';
+      });
+
     } else {
       const warningElement = document.createElement('p');
       warningElement.textContent = result.message;

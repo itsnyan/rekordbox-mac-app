@@ -85,6 +85,7 @@ p {
   padding: 20px;
   border: 2px solid #3d4443;
   border-radius: 5px;
+  width: 50%;
 }
 
 #progress {
@@ -92,13 +93,6 @@ p {
   margin: 20px;
   padding: 20px;
   border-radius: 2px;
-}
-
-#actions-section {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 20px 40px 40px;
 }
 
 #feature-list {
@@ -118,6 +112,13 @@ p {
 
 #start-actions button[hidden] {
   display: none;
+}
+
+#actions-section {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 20px 40px 40px;
 }
 
 #actions-section button {
@@ -193,14 +194,26 @@ footer {
   font-weight: 300;
 }
 
+footer div {
+  display: flex;
+  flex-direction: row;
+}
+
 footer a {
   color: #627c77;
   text-decoration: none;
   cursor: pointer;
   transition: opacity 0.3s;
+  margin-right: 10px;
 }
 
 footer a:hover {
   color: #dce7e5;
   opacity: 0.8;
+}
+
+.footer p,
+.footer a,
+.footer span {
+  margin: 3px;
 }
