@@ -15,12 +15,22 @@ Follow up from the rekordbox-cli project, now with a graphical interface to make
 - #### Duplicate removal feature (coming soon) 🛠️
 - #### Deleted track cleanup (coming soon) 🛠️
 
-## Usage
+## Notes
 
-To download and install the app, current MVP version of the packaged app installer (DMG) is located in the 'Releases' folder:
+To download and install the app, current version of the packaged app installer (DMG) is located in the 'Releases' folder:
 
-https://github.com/itsnyan/rekordbox-mac-app/tree/main/releases
+- https://github.com/itsnyan/rekordbox-mac-app/tree/main/releases
 
-To get the collection XML in Rekordbox:
+<details>
+  <summary>Export the collection XML on Rekordbox
+</summary>
+  <img width="405" alt="xml-how-to" src="https://github.com/user-attachments/assets/22a8931d-f648-4e6e-90c7-20122a9c12b0">
+</details>
 
-<img width="405" alt="xml-how-to" src="https://github.com/user-attachments/assets/22a8931d-f648-4e6e-90c7-20122a9c12b0">
+<details>
+  <summary>V1 Demo:</summary>
+
+  https://github.com/user-attachments/assets/13b2ba93-f145-4c65-9ee0-8e6aeca97598
+  
+</details>
+
