@@ -30,18 +30,27 @@ To work around this issue while I’m working on notarizing the app, please foll
 5. Enter the following command: xattr -c <path/to/application.app>
 6. Now you can launch the application.
 
-💡 A convenient way to get the path is to enter 'xattr -c ' and then drag the rekordbox-xml-organizer app icon from the Applications folder into the Terminal window.
+💡 A convenient way to obtain the path is to enter xattr -c and then drag the rekordbox-xml-organizer app icon from the Applications folder into the Terminal window. If you need additional assistance, check out the v1.0.0 installation video below.
 
 <details>
-  <summary>How to export the collection XML on Rekordbox:
+  <summary>v1.0.0 Installation tutorial.</summary>
+ 
+  https://github.com/user-attachments/assets/54dc2a6f-e5e8-4d6e-9c83-842a96bf0082
+
+</details>
+
+<details>
+  <summary>How to export the collection XML on Rekordbox.
 </summary>
   <img width="405" alt="xml-how-to" src="https://github.com/user-attachments/assets/22a8931d-f648-4e6e-90c7-20122a9c12b0">
 </details>
 
 <details>
-  <summary>v1.0.0 demo:</summary>
+  <summary>v1.0.0 features demo.</summary>
 
   https://github.com/user-attachments/assets/13b2ba93-f145-4c65-9ee0-8e6aeca97598
   
 </details>
+
+
 
