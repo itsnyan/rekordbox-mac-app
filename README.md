@@ -17,9 +17,7 @@ Follow up from the rekordbox-cli project, now with a graphical interface to make
 
 ## Notes
 
-To download and install the app, current version of the packaged app installer (DMG) is located in the 'Releases' folder:
-
-- https://github.com/itsnyan/rekordbox-mac-app/tree/main/releases
+To download and install the application, visit the releases section on the right-hand side or click [here](https://github.com/itsnyan/rekordbox-mac-app/releases)
 
 <details>
   <summary>Export the collection XML on Rekordbox
