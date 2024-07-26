@@ -19,7 +19,7 @@ Follow up from the rekordbox-cli project, now with a graphical interface to make
 
 To download and install the application, navigate to the releases section on the right-hand side or click [here](https://github.com/itsnyan/rekordbox-mac-app/releases)
 
-🔧 The v1.0.0 release is currently signed with my developer certificate but hasn't been notarized yet, so you might encounter an error stating that the app is damaged (Apple’s distribution process can be quite restrictive). For more details, check this discussion: Apple Support Thread.
+🔧 The v1.0.0 release is currently signed with my developer certificate but hasn't been notarized yet, so you might encounter an error stating that the app is damaged (Apple’s distribution process can be quite restrictive). For more details, check this discussion: https://discussions.apple.com/thread/253714860?sortBy=best
 
 To work around this issue while I’m working on notarizing the app, please follow these steps:
 
