@@ -17,16 +17,29 @@ Follow up from the rekordbox-cli project, now with a graphical interface to make
 
 ## Notes
 
-To download and install the application, visit the releases section on the right-hand side or click [here](https://github.com/itsnyan/rekordbox-mac-app/releases)
+To download and install the application, navigate to the releases section on the right-hand side or click [here](https://github.com/itsnyan/rekordbox-mac-app/releases)
+
+🔧 The v1.0.0 release is currently signed with my developer certificate but hasn't been notarized yet, so you might encounter an error stating that the app is damaged (Apple’s distribution process can be quite restrictive). For more details, check this discussion: Apple Support Thread.
+
+To work around this issue while I’m working on notarizing the app, please follow these steps:
+
+1. Download the app.
+2. Open the DMG file.
+3. Drag the rekordbox-xml-organizer app into the Applications folder.
+4. Before launching the app, open the Terminal application.
+5. Enter the following command: xattr -c <path/to/application.app>
+6. Now you can launch the application.
+
+💡 A convenient way to get the path is to enter 'xattr -c ' and then drag the rekordbox-xml-organizer app icon from the Applications folder into the Terminal window.
 
 <details>
-  <summary>Export the collection XML on Rekordbox
+  <summary>How to export the collection XML on Rekordbox:
 </summary>
   <img width="405" alt="xml-how-to" src="https://github.com/user-attachments/assets/22a8931d-f648-4e6e-90c7-20122a9c12b0">
 </details>
 
 <details>
-  <summary>V1 Demo:</summary>
+  <summary>v1.0.0 demo:</summary>
 
   https://github.com/user-attachments/assets/13b2ba93-f145-4c65-9ee0-8e6aeca97598
   
